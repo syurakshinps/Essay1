@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.ArrayList;
+
 public class Main {
 
     /*
@@ -19,7 +21,21 @@ public class Main {
  Сортировку реализовать с помощью интерфейса "Comparable".
      */
 
-    public static void main(String[] args) {
-	// write your code here
+    public static void main(String[] args) throws Exception{
+        ArrayList<String> InputFile = new ArrayList<>();
+        String myInFile = "infile.csv";
+        String lineRegex = "(\\D*);(\\d*);(\\d*)";
+        ReadFile myfile = new ReadFile(myInFile,lineRegex);
+        myfile.ProcessFile();
+        for (String s : InputFile = myfile.getArray()) {
+            System.out.println(s);
+        }
+        //loop
+        Buyer buyers = new Buyer("login1", "Вася Пупкин");
+        //loop end
+        String loginSeller = "Seller";
+        Seller s = new Seller("loginSeller");
+        s.BrowseActiveBuyers();
+
     }
 }

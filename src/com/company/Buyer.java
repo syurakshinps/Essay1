@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.UUID;
+
 public class Buyer extends User{
     /*
     2. От «Пользователя» унаследовать конкретные классы «Покупатель», «Продавец».
@@ -7,13 +9,41 @@ public class Buyer extends User{
  а у покупателя дополнительные свойства "ФИО", "телефон" и "ID".
      */
 
-    public Buyer(String login) {
+    String FullName;
+    String phoneNumber;
+    String ID;
+
+    public Buyer(String login, String fullName) {
         super(login);
+        this.FullName = fullName;
+        this.phoneNumber = phoneNumber;
+        this.ID = ID;
     }
 
-    public void BrowseActiveBuyers()
-    {
-
+    public String getFullName() {
+        return FullName;
     }
+
+    public void setFullName(String fullName) {
+        FullName = fullName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public UUID getID() {
+        UUID uuid = UUID.randomUUID();
+        return uuid;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
 
 }
