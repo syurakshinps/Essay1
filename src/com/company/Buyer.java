@@ -1,6 +1,8 @@
 package com.company;
 
+import java.util.Random;
 import java.util.UUID;
+import java.util.random.RandomGenerator;
 
 public class Buyer extends User{
     /*
@@ -45,5 +47,18 @@ public class Buyer extends User{
         this.ID = ID;
     }
 
+    public boolean isActive() {
 
+        int  rand = (int) (Math.random() * 10);
+    if (rand % 2 == 0)
+        {            return true;         }
+        else
+        {            return false;        }
+
+    }
+
+    @Override
+    public String toString() {
+        return getFullName();
+    }
 }
