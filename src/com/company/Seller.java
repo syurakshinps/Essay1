@@ -1,28 +1,28 @@
 package com.company;
 
+import com.opencsv.CSVWriter;
+
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public class Seller extends User implements Comparable{
-    /*
-    2. От «Пользователя» унаследовать конкретные классы «Покупатель», «Продавец».
- 3. У продавца есть дополнительный метод «Посмотреть активных покупателей» ,
- а у покупателя дополнительные свойства "ФИО", "телефон" и "ID".
-     */
+
+public class Seller extends User  {
+
     ArrayList<Buyer> Buyers = new ArrayList<Buyer>();
+    String filename;
 
     public Seller(String login, ArrayList<Buyer> Buyers) {
         super(login);
         this.Buyers = Buyers;
     }
 
-    public void BrowseActiveBuyersSortedbyFamilyName()
-    {
+    public void BrowseActiveBuyersSortedbyFamilyName() {
         Buyers.sort(Comparator.comparing(Buyer::getFullName));
         System.out.println("------------- active ones ---------");
 
-        for (Buyer s : Buyers)
-        {
+        for (Buyer s : Buyers) {
             /*
             System.out.println(s.getFullName() + " " +
                                 s.getPassWord()  + " " +
@@ -32,25 +32,33 @@ public class Seller extends User implements Comparable{
             */
 
 
-            if (s.isActive())
-            {
+            if (s.isActive()) {
                 System.out.println(s.getFullName() + " " +
-                        s.getPassWord()  + " " +
+                        s.getPassWord() + " " +
                         s.getPhoneNumber() + " " +
                         s.getID());
             }
         }
-
-
-
     }
 
+        public void BrowseActiveAndWriteToFileSorted ( String filename){
+        try {
+            FileWriter outputfile = new FileWriter(filename);
+            CSVWriter writer = new CSVWriter(outputfile);
 
-
-
-    @Override
-    public int compareTo(Object o) {
-
-        return 0;
+            Buyers.sort(Comparator.comparing(Buyer::getFullName));
+            for (Buyer s : Buyers)
+            {
+                if (s.isActive())
+                {
+                    String[] data = {s.getFullName(), s.getPassWord(), s.getPhoneNumber()};
+                    writer.writeNext(data);
+                }
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
+

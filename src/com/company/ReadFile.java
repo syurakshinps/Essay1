@@ -18,7 +18,7 @@ public class ReadFile {
         this.wholeLine = wholeLine;
     }
 
-//    String fileString = "([a-zA-Z]*);([a-zA-Z0-9]*);([a-zA-Z0-9!\\?\\.\\*]*);((\\+7|8)?(\\d{3})-?(\\d{7})";//ФИО, Логин, пароль, телефон
+//    String fileString = "([a-zA-Z]*);([a-zA-Z0-9]*);([a-zA-Z0-9]\\?\\.\\*]*);((\\+7|8)?(\\d{3})-?(\\d{7})";//ФИО, Логин, пароль, телефон
 
 
     public ArrayList<String> getArray() {
@@ -39,7 +39,7 @@ public class ReadFile {
                         i += i;
                     }
                 } else {
-                 //   System.out.println(line + " - Empty line or wrong format. Correct line is characters;digits;digits");
+                 System.out.println(line + " - Empty line or wrong format. Correct line follows " + wholeLine);
                 }
             }
             reader.close();
@@ -48,8 +48,6 @@ public class ReadFile {
         {
             System.out.println("no such file");
         }
-
-
     }
 }
 
