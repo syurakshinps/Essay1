@@ -33,7 +33,7 @@ public class Main {
 
         ArrayList<String> myOutList = new ArrayList<>();
         ArrayList<Buyer> Buyers = new ArrayList<Buyer>();
-
+/*
         for (String s : myfile.getArray()) {
             String[] fields = s.split(";");
             for (int j = 0; j < fields.length; j++) {
@@ -42,6 +42,7 @@ public class Main {
 
         }
         System.out.println(myOutList);
+        */
 /*
         for (int i = 0; i < myfile.getArray().size(); i++) {
             String[] fields = myfile.getArray().get(i).split(";");
@@ -50,20 +51,39 @@ public class Main {
              //   System.out.println("fields length " + fields.length);
             }
             */
-        for (String s : myfile.getArray()) {
-           // System.out.println(s);
-                String[] fields = s.split(";");
-                for (int j = 0; j < fields.length; j++) {
-                    myOutList.add(fields[j]);                }
-                Buyers.add(new Buyer(fields[1],fields[0],fields[3],fields[2]));
-        }
+        for (String s : myfile.getArray())
+        {
+                String[] fields = s.split(";"); //тут привязака к раделителям внутри записи про клиента.
+                Buyers.add(new Buyer(fields[1],fields[0],fields[3],fields[2])); //тут количество полей прибито гвоздями
+        } // ну и запилить именно присвоение гуида, а не как сейчас.
+
+        Seller seller = new Seller("login123", Buyers);
+        seller.BrowseActiveBuyers();
+//        for (Buyer s : Buyers)
+//        {
+//            /*
+//            System.out.println(s.getFullName() + " " +
+//                                s.getPassWord()  + " " +
+//                                s.getPhoneNumber() + " " +
+//                                s.getID() + " " +
+//                                s.isActive());
+//            */
+//
+//                if (s.isActive())
+//                {
+//
+//                    System.out.println("------------- active 1s ---------");
+//                    System.out.println(s.getFullName() + " " +
+//                            s.getPassWord()  + " " +
+//                            s.getPhoneNumber() + " " +
+//                            s.getID());
+//                }
+//        }
 
 
-        for (Buyer s : Buyers) {
-            System.out.println(s.getFullName() + " " + s.getPassWord()  + " "+ s.getPhoneNumber() + " " + s.getID() + " " + s.isActive());
 
 
-        }
+
     }
 }
 
