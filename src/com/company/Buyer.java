@@ -1,8 +1,6 @@
 package com.company;
 
-import java.util.Random;
 import java.util.UUID;
-import java.util.random.RandomGenerator;
 
 public class Buyer extends User{
     /*
@@ -10,17 +8,20 @@ public class Buyer extends User{
  3. У продавца есть дополнительный метод «Посмотреть активных покупателей» ,
  а у покупателя дополнительные свойства "ФИО", "телефон" и "ID".
      */
-
     String FullName;
     String phoneNumber;
+    String passWord;
     String ID;
 
-    public Buyer(String login, String fullName) {
+    public Buyer(String fullName, String login, String phoneNumber, String passWord) {
         super(login);
-        this.FullName = fullName;
+        FullName = fullName;
         this.phoneNumber = phoneNumber;
-        this.ID = ID;
+        this.passWord = passWord;
     }
+
+    //------------- getters & setters ----------
+
 
     public String getFullName() {
         return FullName;
@@ -37,6 +38,18 @@ public class Buyer extends User{
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public String getPassWord() {
+        return passWord;
+    }
+
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
+    }
+
+    //------------- ^ getters & setters  ^-------------
+
+
 
     public UUID getID() {
         UUID uuid = UUID.randomUUID();

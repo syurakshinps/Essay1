@@ -1,5 +1,6 @@
 package com.company;
 
+import java.time.chrono.ThaiBuddhistEra;
 import java.util.*;
 
 public class Main {
@@ -13,7 +14,8 @@ public class Main {
  4. Есть исходный csv-файл со списком покупателей в формате: ФИО, Логин, пароль, телефон.
  4.1 Если строчка парсится (т.е. для каждого из полей выполняются условия,
  которые вы сами зададите своими регулярками), то такой покупатель создается в системе
- через конструктор класса "Покупатель". Таким образом,должна появиться коллекция покупателей с присвоенными ID.
+ через конструктор класса "Покупатель". Таким образом,должна появиться
+ коллекция покупателей с присвоенными ID.
  4.2 Если какая-то строка не парсится корректно, то выдается исключение.
  Исключение должно быть перехвачено, чтобы оно не приводило к аварийному завершению программы.
  5. Далее происходит вызов метода продавца  «Посмотреть активных покупателей»,
@@ -24,20 +26,66 @@ public class Main {
     public static void main(String[] args) throws Exception {
         ArrayList<String> InputFile = new ArrayList<>();
         String myInFile = "infile.csv";
-        String lineRegex = "(\\D*);(\\D*);(\\d*);(\\d*)"; //Надо поправить формат!
+        String lineRegex = "(\\D*);(\\D*);(\\D*);(\\d*)"; //Надо поправить формат!
 
         ReadFile myfile = new ReadFile(myInFile, lineRegex);
         myfile.ProcessFile();
 
-        //    System.out.println(myfile.getArray());
         ArrayList<String> myOutList = new ArrayList<>();
+        ArrayList<Buyer> Buyers = new ArrayList<Buyer>();
 
-        for (int i = 0; i < myfile.getArray().size(); i++) {
-            String[] fields = myfile.getArray().get(i).split(";");
-            for (int j = 0; j < fields.length; j++)
+        for (String s : myfile.getArray()) {
+            String[] fields = s.split(";");
+            for (int j = 0; j < fields.length; j++) {
                 myOutList.add(fields[j]);
+            }
+
         }
         System.out.println(myOutList);
+/*
+        for (int i = 0; i < myfile.getArray().size(); i++) {
+            String[] fields = myfile.getArray().get(i).split(";");
+            for (int j = 0; j < fields.length; j++) {
+                myOutList.add(fields[j]);
+             //   System.out.println("fields length " + fields.length);
+            }
+            */
+        for (String s : myfile.getArray()) {
+           // System.out.println(s);
+                String[] fields = s.split(";");
+                for (int j = 0; j < fields.length; j++) {
+                    myOutList.add(fields[j]);                }
+                Buyers.add(new Buyer(fields[1],fields[0],fields[3],fields[2]));
+        }
+
+
+        for (Buyer s : Buyers) {
+            System.out.println(s.getFullName() + " " + s.getPassWord()  + " "+ s.getPhoneNumber() + " " + s.getID() + " " + s.isActive());
+
+
+        }
+    }
+}
+
+        /*
+        System.out.println(myOutList);
+        Iterator<String> ite = myOutList.iterator();
+        for (int i=0;  i < myfile.getArray().size(); i++)
+        {
+            System.out.println(i + "  " + myOutList.get(i));
+            System.out.println(myfile.getArray().size());
+            i +=i;
+
+        }
+        */
+        /*
+        while (ite.hasNext())
+        {
+
+            System.out.println(ite.next());
+        }
+        */
+        /*
 for (int i=1; i<myOutList.size();i=i+4) {
  //   System.out.println(myOutList.get(i));
 }
@@ -47,6 +95,7 @@ for (int i=1; i<myOutList.size();i=i+4) {
 
             }
         }
+        */
 //    System.out.println(myOutList.get(2));
 
         //}
@@ -87,6 +136,6 @@ for (int i=1; i<myOutList.size();i=i+4) {
             System.out.println(s1);
         }
         */
-    }
-}
+
+
 
