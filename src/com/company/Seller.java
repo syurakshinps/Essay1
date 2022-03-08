@@ -1,8 +1,9 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
-public class Seller extends User{
+public class Seller extends User implements Comparable{
     /*
     2. От «Пользователя» унаследовать конкретные классы «Покупатель», «Продавец».
  3. У продавца есть дополнительный метод «Посмотреть активных покупателей» ,
@@ -15,8 +16,9 @@ public class Seller extends User{
         this.Buyers = Buyers;
     }
 
-    public void BrowseActiveBuyers()
+    public void BrowseActiveBuyersSortedbyFamilyName()
     {
+        Buyers.sort(Comparator.comparing(Buyer::getFullName));
         System.out.println("------------- active ones ---------");
 
         for (Buyer s : Buyers)
@@ -28,6 +30,8 @@ public class Seller extends User{
                                 s.getID() + " " +
                                 s.isActive());
             */
+
+
             if (s.isActive())
             {
                 System.out.println(s.getFullName() + " " +
@@ -36,9 +40,17 @@ public class Seller extends User{
                         s.getID());
             }
         }
+
+
+
     }
 
 
 
 
+    @Override
+    public int compareTo(Object o) {
+
+        return 0;
+    }
 }

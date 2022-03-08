@@ -53,12 +53,9 @@ public class Buyer extends User{
 
     public UUID getID() {
         UUID uuid = UUID.randomUUID();
-        return uuid;
+        return uuid; // можно реализовать именно присвоение гуида, а не как сейчас (to do)
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
-    }
 
     public boolean isActive() {
 
@@ -70,8 +67,5 @@ public class Buyer extends User{
 
     }
 
-    @Override
-    public String toString() {
-        return getFullName();
-    }
+
 }

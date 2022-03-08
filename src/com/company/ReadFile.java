@@ -42,10 +42,13 @@ public class ReadFile {
                  //   System.out.println(line + " - Empty line or wrong format. Correct line is characters;digits;digits");
                 }
             }
-        } catch (FileNotFoundException e)
+            reader.close();
+        }
+        catch (FileNotFoundException e)
         {
             System.out.println("no such file");
         }
+
 
     }
 }
